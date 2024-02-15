@@ -9,6 +9,9 @@ const config: Config = {
     },
     moduleFileExtensions: ['js', 'ts', 'svelte'],
     // setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect' ],
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1', // Adjust the path accordingly
+    },
 
 }
 
