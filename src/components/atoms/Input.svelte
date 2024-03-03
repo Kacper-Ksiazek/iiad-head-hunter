@@ -19,5 +19,5 @@
         on:input={(e)=>value = e.currentTarget.value}
         on:keydown={onKeydownHandler}
 
-        class="py-2 px-4 border-stone-100 border-2 rounded-md w-full focus:outline-none focus:border-amber-500 transition duration-300 ease-in-out my-3"
+        class="py-2 px-4 border-stone-100 border-2 rounded-md w-full focus:outline-none focus:border-amber-500 transition duration-300 ease-in-out"
 />
