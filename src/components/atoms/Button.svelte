@@ -5,8 +5,9 @@
     const dispatch = createEventDispatcher();
 
     export let disabled: boolean = false;
-    export let label: string = '';
+    export let label: string;
     export let variant: TailwindColor = 'gray';
+
 
 </script>
 
