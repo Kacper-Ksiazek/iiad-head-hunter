@@ -1,10 +1,13 @@
 <script lang="ts">
     import {IDIOTS} from "@/assets/idiots";
+    import {searchedPhrasesStore} from "@/stores/searchedPhrasesStore";
 
     export let searchedPhrase: string;
     export let numberOfResults: number;
 
-    $: data = IDIOTS.getBySearchingPhrase(searchedPhrase);
+    export let displayOnlyWithSearchingPhrases: boolean;
+
+    $: data = displayOnlyWithSearchingPhrases ? IDIOTS.getAllByMultipleSearchingPhrases($searchedPhrasesStore) : IDIOTS.getBySearchingPhrase(searchedPhrase);
     $: numberOfResults = data.length;
 
 </script>

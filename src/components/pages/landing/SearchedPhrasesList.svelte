@@ -1,6 +1,5 @@
 <script lang="ts">
     import {searchedPhrasesStore} from "@/stores/searchedPhrasesStore";
-
 </script>
 
 
