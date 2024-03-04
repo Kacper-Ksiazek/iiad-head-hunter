@@ -1,3 +1,5 @@
+import type {SearchedPhrase} from "@/stores/searchedPhrasesStore";
+
 type IdiotsData = Map<number, string>
 
 interface Idiot {
@@ -14,7 +16,6 @@ interface IdiotsInterface {
 
 const IDIOTS_DATA: Idiot[] = [
     {index: 411307, name: 'Anna Suska'},
-    {index: 409936, name: 'Kamil Kminkowski'},
     {index: 416367, name: 'Magdalena Szczuka'},
     {index: 416582, name: 'Witold Tomczyk'},
     {index: 414805, name: 'Bartosz Krzysik'},
@@ -24,7 +25,6 @@ const IDIOTS_DATA: Idiot[] = [
     {index: 416026, name: 'Oliwia Wołos'},
     {index: 416119, name: 'Konrad Dąbrowski'},
     {index: 415208, name: 'Łucja Adamska'},
-    {index: 411693, name: 'Stanisław Kosmala'},
     {index: 414792, name: 'Magdalena Sztok'},
     {index: 415331, name: 'Julia Walencik'},
     {index: 416432, name: 'Mikołaj Szuba'},
@@ -64,7 +64,7 @@ const IDIOTS_DATA: Idiot[] = [
     {index: 415696, name: 'Karolina Kokoszka'},
     {index: 417874, name: 'Joanna Olas'},
     {index: 406499, name: 'Maurycy Ebertowski'},
-    {index: 415422, name: 'Kot Julia'},
+    {index: 415422, name: 'Julia Kot'},
     {index: 416457, name: 'Natalia Klinik'},
     {index: 414584, name: 'Jakub Milasz'},
     {index: 415490, name: 'Dawid Kraszkiewicz'},
@@ -107,7 +107,7 @@ class Idiots implements IdiotsInterface {
     }
 
     public getBySearchingPhrase(phrase: string): Idiot[] {
-        if(phrase.length == 0) return this.data;
+        if (phrase.length == 0) return this.data;
 
 
         return this.data.filter(row => this.idiotToString(row).includes(phrase.toLowerCase()));
@@ -115,6 +115,12 @@ class Idiots implements IdiotsInterface {
 
     public getAll(): Idiot[] {
         return this.data;
+    }
+
+    public getAllByMultipleSearchingPhrases(_phrases: Set<SearchedPhrase>) {
+        const phrases: string[] = Array.from(_phrases).map(({phrase}) => phrase.toLowerCase());
+
+        return this.data.filter(row => phrases.some(phrase => this.idiotToString(row).includes(phrase)));
     }
 }
 

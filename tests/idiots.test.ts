@@ -1,4 +1,4 @@
-import { IDIOTS } from "../src/assets/idiots";
+import {IDIOTS} from "../src/assets/idiots";
 
 test("getOneByName should return an idiot with a given name", () => {
     const me = IDIOTS.getOneByName("Kacper Książek");
@@ -29,4 +29,14 @@ test("getBySearchingPhrase should return all idiots with a name containing the p
     const allIdiots = IDIOTS.getAll();
 
     expect(idiots).toHaveLength(allIdiots.length);
+})
+
+test("getAllByMultipleSearchingPhrases should return all idiots with a name containing any of the phrases", () => {
+    const idiots = IDIOTS.getAllByMultipleSearchingPhrases(new Set(["Kacper", "Bartosz"]));
+
+    expect(idiots).not.toHaveLength(0)
+
+    for (const idiot of idiots) {
+        expect(idiot.name).toMatch(/Kacper|Bartosz/);
+    }
 })
